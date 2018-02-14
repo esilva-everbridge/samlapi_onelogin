@@ -10,6 +10,8 @@ import base64
 import logging
 import xml.etree.ElementTree as ET
 import re
+import time
+from datetime import datetime
 from bs4 import BeautifulSoup
 from os.path import expanduser
 from urllib.parse import urlparse, urlunparse
@@ -42,7 +44,7 @@ else:
 sslverification = True
 
 # Uncomment to enable low level debugging
-# logging.basicConfig(level=logging.DEBUG)
+#logging.basicConfig(level=logging.DEBUG)
 ##########################################################################
 
 # Get the credentials from the user
@@ -189,7 +191,7 @@ with open(filename, 'w+') as configfile:
 print('\n\n-------------------------------------------------------------------')
 print('Your new access key pair has been stored in the AWS configuration file:')
 print('    {0} (under the saml profile).'.format(filename))
-print('Note that it will expire at {0}.'.format(aws_exp))
+print('Note that it will expire at {0}.'.format(aws_exp.astimezone()))
 print('To use this credential, call the AWS CLI with the --profile option')
 print('    (e.g. aws --profile saml ec2 describe-instances).')
 print('-------------------------------------------------------------------\n\n')
