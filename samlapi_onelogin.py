@@ -155,7 +155,7 @@ else:
 
 # Use the assertion to get an AWS STS token using Assume Role with SAML
 stsclient = boto3.client('sts')
-token = stsclient.assume_role_with_saml(RoleArn=role_arn, PrincipalArn=principal_arn, SAMLAssertion=saml)
+token = stsclient.assume_role_with_saml(RoleArn=role_arn, PrincipalArn=principal_arn, SAMLAssertion=saml, DurationSeconds=28800)
 creds = token['Credentials']
 aws_key = creds['AccessKeyId']
 aws_sec = creds['SecretAccessKey']
